@@ -1,5 +1,5 @@
 
-![Logo](https://raw.githubusercontent.com/JellyPumps/EchoChamber/main/LOGO.png)
+![Logo](https://raw.githubusercontent.com/JellyPumps/EchoChamber/master/LOGO.png)
 
 
 # Echo Chamber
