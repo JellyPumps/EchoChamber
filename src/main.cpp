@@ -13,7 +13,7 @@ int main()
 {
     // Set Window Properties
     InitWindow(RESOLUTION[0], RESOLUTION[1], TITLE);
-    SetTargetFPS(60);
+    SetTargetFPS(FPS);
 
     // Set Properites of Dialogue Box
     SetDialoguePicture(PATH_HIGHMAGE);
@@ -36,6 +36,6 @@ int main()
 
     // Cleanup Program
     CloseWindow();
-    
+
     return 0;
 }
