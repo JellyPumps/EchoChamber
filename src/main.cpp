@@ -1,4 +1,4 @@
-#include "dialougebox.h"
+#include "dialoguebox.h"
 #include "colours.h"
 #include "filepath.h"
 #include "global.h"
