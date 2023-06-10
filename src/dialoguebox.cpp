@@ -25,12 +25,18 @@ const float OT_SIZ_Y = 1.0 / 5.0;
 
 const float MAX_CHARACTER_COUNT = (WIDTH / 2.0) / ((WIDTH / 50.0) + (WIDTH / 400.0));
 
-Font alagard = LoadFontEx(
-    PATH_ALAGARD,
-    32,
-    0,
-    250
-);
+Font alagard;
+
+// Load main font
+void loadALAGARD()
+{
+    alagard = LoadFontEx(
+        PATH_ALAGARD,
+        32,
+        0,
+        250
+    );
+}
 
 // Draw Dialogue Box
 void DrawDialogue()

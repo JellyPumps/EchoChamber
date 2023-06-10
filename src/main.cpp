@@ -18,6 +18,9 @@ int main()
     // Set Properites of Dialogue Box
     SetDialoguePicture(PATH_HIGHMAGE);
 
+    // Load font
+    loadALAGARD();
+
     // Game Loop
     while (!WindowShouldClose())
     {
