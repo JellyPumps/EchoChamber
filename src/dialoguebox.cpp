@@ -1,5 +1,6 @@
 #include "dialoguebox.h"
 #include "colours.h"
+#include "filepath.h"
 #include "global.h"
 
 #include <raylib.h>
@@ -22,40 +23,63 @@ const float OT_POS_Y = 11.0 / 15.0;
 const float OT_SIZ_X = 27.0 / 40.0;
 const float OT_SIZ_Y = 1.0 / 5.0;
 
+const float MAX_CHARACTER_COUNT = (WIDTH / 2.0) / ((WIDTH / 50.0) + (WIDTH / 400.0));
+
+Font alagard = LoadFontEx(
+    PATH_ALAGARD,
+    32,
+    0,
+    250
+);
+
+// Draw Dialogue Box
 void DrawDialogue()
 {
 
     // Dialogue Outline
     DrawRectangle(
-        RESOLUTION[0] * OT_POS_X,
-        RESOLUTION[1] * OT_POS_Y,
-        RESOLUTION[0] * OT_SIZ_X,
-        RESOLUTION[1] * OT_SIZ_Y,
+        WIDTH * OT_POS_X,
+        HEIGHT * OT_POS_Y,
+        WIDTH * OT_SIZ_X,
+        HEIGHT * OT_SIZ_Y,
         PLEARTH_ONE
     );
 
     // Dialogue Container Rect
     DrawRectangle(
-        RESOLUTION[0] * DX_POS_X,
-        RESOLUTION[1] * DX_POS_Y,
-        RESOLUTION[0] * DX_SIZ_X,
-        RESOLUTION[1] * DX_SIZ_Y,
+        WIDTH * DX_POS_X,
+        HEIGHT * DX_POS_Y,
+        WIDTH * DX_SIZ_X,
+        HEIGHT * DX_SIZ_Y,
         PLEARTH_TWO
     );
 
     // Dialogue Picture
     DrawTexture(
         picture.character,
-        RESOLUTION[0] * PX_POS_X,
-        RESOLUTION[1] * PX_POS_Y,
+        WIDTH * PX_POS_X,
+        HEIGHT * PX_POS_Y,
         WHITE
     );
 }
 
-// Set Dialogue Picture
+// Set Picture for Character
 void SetDialoguePicture(const char *PATH)
 {   
     Image character = LoadImage(PATH);
     picture.character = LoadTextureFromImage(character);
     UnloadImage(character);
+}
+
+// Draw Text for Dialogue
+void DrawDialogueText(const char *text, Vector2 position)
+{
+    DrawTextEx(
+        alagard,
+        text,
+        (Vector2){position.x,position.y},
+        FONT_SIZE,
+        FONT_SPACING,
+        BLACK
+    );
 }

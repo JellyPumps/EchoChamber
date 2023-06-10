@@ -18,13 +18,6 @@ int main()
     // Set Properites of Dialogue Box
     SetDialoguePicture(PATH_HIGHMAGE);
 
-    // Font
-    Font alagard = LoadFontEx(
-    PATH_ALAGARD, 
-    32,
-    0,
-    250);
-
     // Game Loop
     while (!WindowShouldClose())
     {
@@ -35,13 +28,7 @@ int main()
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawTextEx(
-           alagard,
-           TITLE,
-           (Vector2){5,5},
-           FONT_SIZE,
-           FONT_SPACING,
-           BLACK);
+        DrawDialogueText(TITLE, (Vector2){5,5});
 
         if (show_dialogue_box) DrawDialogue();
         else ClearBackground(RAYWHITE);
