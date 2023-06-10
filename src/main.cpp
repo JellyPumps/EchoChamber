@@ -31,8 +31,6 @@ int main()
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawDialogueText(TITLE, (Vector2){5,5});
-
         if (show_dialogue_box) DrawDialogue();
         else ClearBackground(RAYWHITE);
 
