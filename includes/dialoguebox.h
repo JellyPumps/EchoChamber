@@ -17,3 +17,4 @@ void loadALAGARD();
 void DrawDialogue();
 void SetDialoguePicture(const char *PATH);
 void SplitDialogue(const std::string &input, std::string dialogue[]);
+void ProcessDialogue(const std::string &filename);

@@ -31,3 +31,5 @@ extern const float FONT_Y;
 
 extern const float CONT_X;
 extern const float CONT_Y;
+
+extern bool nextLine;

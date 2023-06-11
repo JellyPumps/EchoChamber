@@ -32,3 +32,5 @@ const float FONT_Y = DX_POS_Y + FONT_SPACING;
 //const float CONT_X = 19.0 * FONT_SIZE * FONT_SPACING;
 const float CONT_X = 608;
 const float CONT_Y = HEIGHT - FONT_SIZE;
+
+bool nextLine = true;

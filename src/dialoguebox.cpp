@@ -3,6 +3,9 @@
 #include "filepath.h"
 #include "global.h"
 
+#include <cstddef>
+#include <fstream>
+#include <iostream>
 #include <string>
 
 PictureInfo picture;
@@ -11,8 +14,8 @@ PictureInfo picture;
 const int MAX_CHARACTER_COUNT = 32;
 const int DIALOGUE_ARR_SIZE = 5;
 
-const char *dialogue = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada tortor sit amet erat viverra, id vehicula dui tincidunt.";
-
+std::string dialogue;
+std::string character;
 std::string dialogue_arr[DIALOGUE_ARR_SIZE];
 
 Font alagard;
@@ -69,23 +72,7 @@ void DrawDialogue()
     );
 
     // Dialogue Text
-    SplitDialogue(dialogue, dialogue_arr);
-
-    for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
-
-        int pos_i = i * (FONT_SIZE + FONT_SPACING);
-
-        DrawTextEx(
-            alagard,
-            dialogue_arr[i].c_str(),
-            (Vector2){FONT_X,FONT_Y + pos_i},
-            FONT_SIZE,
-            FONT_SPACING,
-            BLACK
-        );
-
-    }
-
+    ProcessDialogue(PATH_INTRODUCTION_FILE);
 }
 
 // Set Picture For Character
@@ -95,6 +82,8 @@ void SetDialoguePicture(const char *PATH)
     picture.character = LoadTextureFromImage(character);
     UnloadImage(character);
 }
+
+// Dialogue Text Operations
 
 void SplitDialogue(const std::string &input, std::string dialogue[])
 {
@@ -142,4 +131,47 @@ void SplitDialogue(const std::string &input, std::string dialogue[])
         dialogue[dialogueIndex] = currentSentence;
         dialogueIndex++;
     }
+}
+
+void ProcessDialogue(const std::string &filename)
+{
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        std::cerr << "Failed To Open File" << "\n";
+        return;
+    }
+
+    std::string line;
+
+    while (std::getline(file, line)) {
+        if (nextLine) continue;
+
+        size_t colonPos = line.find(':');
+
+        if (colonPos != std::string::npos) {
+            nextLine = false;
+            character = line.substr(0, colonPos);
+            dialogue = line.substr(colonPos + 1);
+        }
+
+        SplitDialogue(dialogue, dialogue_arr);
+
+        for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
+
+            int pos_i = i * (FONT_SIZE + FONT_SPACING);
+
+            DrawTextEx(
+                alagard,
+                dialogue_arr[i].c_str(),
+                (Vector2){FONT_X,FONT_Y + pos_i},
+                FONT_SIZE,
+                FONT_SPACING,
+                BLACK
+            );
+
+            if (IsKeyPressed(KEY_E)) nextLine = true;
+        }
+    }
+
 }

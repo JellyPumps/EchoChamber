@@ -25,7 +25,8 @@ int main()
     while (!WindowShouldClose())
     {
         // Update
-        if (IsKeyPressed(KEY_E)) show_dialogue_box = !show_dialogue_box;
+        if (IsKeyPressed(KEY_R)) show_dialogue_box = !show_dialogue_box;
+        
         // Draw
         BeginDrawing();
         ClearBackground(RAYWHITE);
