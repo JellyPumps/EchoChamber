@@ -8,10 +8,10 @@
 PictureInfo picture;
 
 
-const int MAX_CHARACTER_COUNT = 27;
+const int MAX_CHARACTER_COUNT = 32;
 const int DIALOGUE_ARR_SIZE = 5;
 
-const char *dialogue = "qwertyuiopasdfghjklzxcvbnm qweer";
+const char *dialogue = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada tortor sit amet erat viverra, id vehicula dui tincidunt.";
 
 std::string dialogue_arr[DIALOGUE_ARR_SIZE];
 
@@ -71,14 +71,20 @@ void DrawDialogue()
     // Dialogue Text
     SplitDialogue(dialogue, dialogue_arr);
 
-    DrawTextEx(
-        alagard,
-        dialogue_arr[0].c_str(),
-        (Vector2){FONT_X,FONT_Y},
-        FONT_SIZE,
-        FONT_SPACING,
-        BLACK
-    );
+    for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
+
+        int pos_i = i * (FONT_SIZE + FONT_SPACING);
+
+        DrawTextEx(
+            alagard,
+            dialogue_arr[i].c_str(),
+            (Vector2){FONT_X,FONT_Y + pos_i},
+            FONT_SIZE,
+            FONT_SPACING,
+            BLACK
+        );
+
+    }
 
 }
 
