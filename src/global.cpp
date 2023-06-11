@@ -9,7 +9,7 @@ const int HEIGHT = RESOLUTION[1];
 const char *TITLE = "Echo Chamber";
 
 const float FONT_SIZE = WIDTH / 50.0;
-const float FONT_SPACING = HEIGHT / 400.0;
+const float FONT_SPACING = WIDTH / 400.0;
 
 const float DX_POS_X = WIDTH * 7.0 / 40.0;
 const float DX_POS_Y = HEIGHT *3.0 / 4.0;
@@ -29,8 +29,7 @@ const float OT_SIZ_Y = HEIGHT * 1.0 / 5.0;
 const float FONT_X = DX_POS_X + FONT_SIZE;
 const float FONT_Y = DX_POS_Y + FONT_SPACING;
 
-//const float CONT_X = 19.0 * FONT_SIZE * FONT_SPACING;
-const float CONT_X = 608;
+const float CONT_X = 19.0 * FONT_SIZE * FONT_SPACING;
 const float CONT_Y = HEIGHT - FONT_SIZE;
 
 bool nextLine = true;
