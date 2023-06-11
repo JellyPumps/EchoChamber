@@ -25,3 +25,9 @@ extern const float OT_POS_X;
 extern const float OT_POS_Y;
 extern const float OT_SIZ_X;
 extern const float OT_SIZ_Y;
+
+extern const float FONT_X;
+extern const float FONT_Y;
+
+extern const float CONT_X;
+extern const float CONT_Y;

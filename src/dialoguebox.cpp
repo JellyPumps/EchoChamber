@@ -3,16 +3,21 @@
 #include "filepath.h"
 #include "global.h"
 
-#include <raylib.h>
+#include <string>
 
 PictureInfo picture;
 
 
-const float MAX_CHARACTER_COUNT = (WIDTH / 2.0) / ((WIDTH / 50.0) + (WIDTH / 400.0));
+const int MAX_CHARACTER_COUNT = 27;
+const int DIALOGUE_ARR_SIZE = 5;
+
+const char *dialogue = "qwertyuiopasdfghjklzxcvbnm qweer";
+
+std::string dialogue_arr[DIALOGUE_ARR_SIZE];
 
 Font alagard;
 
-// Load main font
+// Load Main Font
 void loadALAGARD()
 {
     alagard = LoadFontEx(
@@ -52,12 +57,83 @@ void DrawDialogue()
          PX_POS_Y,
         WHITE
     );
+
+    // Press "KEY" To Continue Text
+    DrawTextEx(
+        alagard,
+        "Press E To Continue",
+        (Vector2){CONT_X,CONT_Y},
+        FONT_SIZE,
+        FONT_SPACING,
+        GRAY
+    );
+
+    // Dialogue Text
+    SplitDialogue(dialogue, dialogue_arr);
+
+    DrawTextEx(
+        alagard,
+        dialogue_arr[0].c_str(),
+        (Vector2){FONT_X,FONT_Y},
+        FONT_SIZE,
+        FONT_SPACING,
+        BLACK
+    );
+
 }
 
-// Set Picture for Character
+// Set Picture For Character
 void SetDialoguePicture(const char *PATH)
 {   
     Image character = LoadImage(PATH);
     picture.character = LoadTextureFromImage(character);
     UnloadImage(character);
+}
+
+void SplitDialogue(const std::string &input, std::string dialogue[])
+{
+    int currentIndex = 0;
+    int dialogueIndex = 0;
+
+    while (currentIndex < input.length() && dialogueIndex < DIALOGUE_ARR_SIZE)
+    {
+        std::string currentSentence;
+
+        // Check If The Next Character Is A Whitespace
+        if (currentIndex + MAX_CHARACTER_COUNT < input.length() - 1 &&
+        input[currentIndex + MAX_CHARACTER_COUNT] != ' ') {
+            
+            // Find The Last Whitespace Before MAX_CHARACTER_COUNT
+            int lastWhitespaceIndex = currentIndex + MAX_CHARACTER_COUNT;
+            
+            while (lastWhitespaceIndex >= currentIndex && input[lastWhitespaceIndex] != ' ') {
+                lastWhitespaceIndex--;
+            }
+
+            // Divide At The Last Whitespace
+            if (lastWhitespaceIndex >= currentIndex) {
+                currentSentence = input.substr(
+                    currentIndex,
+                    lastWhitespaceIndex - currentIndex + 1
+                );
+
+                currentIndex = lastWhitespaceIndex + 1;
+            }
+        }
+
+        // Divide At MAX_CHARACTER_COUNT If No Whitespace Found
+        if (currentSentence.empty()) {
+            currentSentence = input.substr(currentIndex, MAX_CHARACTER_COUNT);
+            currentIndex += MAX_CHARACTER_COUNT;
+        }
+
+        // Remove Leading Whitespace From The Current Sentence
+        size_t firstNonWhitespaceIndex = currentSentence.find_first_not_of(' ');
+        if (firstNonWhitespaceIndex != std::string::npos) {
+            currentSentence = currentSentence.substr(firstNonWhitespaceIndex);
+        }
+
+        dialogue[dialogueIndex] = currentSentence;
+        dialogueIndex++;
+    }
 }

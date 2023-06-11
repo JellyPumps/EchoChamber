@@ -25,3 +25,10 @@ const float OT_POS_X = WIDTH * 1.0 / 80.0;
 const float OT_POS_Y = HEIGHT * 11.0 / 15.0;
 const float OT_SIZ_X = WIDTH * 27.0 / 40.0;
 const float OT_SIZ_Y = HEIGHT * 1.0 / 5.0;
+
+const float FONT_X = DX_POS_X + FONT_SIZE;
+const float FONT_Y = DX_POS_Y + FONT_SPACING;
+
+//const float CONT_X = 19.0 * FONT_SIZE * FONT_SPACING;
+const float CONT_X = 608;
+const float CONT_Y = HEIGHT - FONT_SIZE;

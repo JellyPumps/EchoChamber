@@ -26,7 +26,6 @@ int main()
     {
         // Update
         if (IsKeyPressed(KEY_E)) show_dialogue_box = !show_dialogue_box;
-
         // Draw
         BeginDrawing();
         ClearBackground(RAYWHITE);
