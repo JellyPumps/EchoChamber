@@ -1,7 +1,7 @@
 #pragma once
 
 // Images
-extern const char *PATH_HIGHMAGE; // High Mage
+extern const char *HIGH_MAGE; // High Mage
 
 // Fonts
 extern const char *PATH_ALAGARD; // Alagard
