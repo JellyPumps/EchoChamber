@@ -61,18 +61,10 @@ void DrawDialogue()
         WHITE
     );
 
-    // Press "KEY" To Continue Text
-    DrawTextEx(
-        alagard,
-        "Press E To Continue",
-        (Vector2){CONT_X,CONT_Y},
-        FONT_SIZE,
-        FONT_SPACING,
-        GRAY
-    );
-
     // Dialogue Text
     ProcessDialogue(PATH_INTRODUCTION_FILE);
+    //DrawDialogueText(dialogue);
+    
 }
 
 // Set Picture For Character
@@ -144,34 +136,47 @@ void ProcessDialogue(const std::string &filename)
 
     std::string line;
 
-    while (std::getline(file, line)) {
-        if (nextLine) continue;
+    if (waitForInput) {
+        // Press "KEY" To Continue Text
+        DrawTextEx(
+            alagard,
+            "Press E To Continue",
+            (Vector2){CONT_X,CONT_Y},
+            FONT_SIZE,
+            FONT_SPACING,
+            GRAY
+        );
+    }
+    else if (std::getline(file,line)) {
 
         size_t colonPos = line.find(':');
 
         if (colonPos != std::string::npos) {
-            nextLine = false;
             character = line.substr(0, colonPos);
             dialogue = line.substr(colonPos + 1);
         }
 
-        SplitDialogue(dialogue, dialogue_arr);
-
-        for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
-
-            int pos_i = i * (FONT_SIZE + FONT_SPACING);
-
-            DrawTextEx(
-                alagard,
-                dialogue_arr[i].c_str(),
-                (Vector2){FONT_X,FONT_Y + pos_i},
-                FONT_SIZE,
-                FONT_SPACING,
-                BLACK
-            );
-
-            if (IsKeyPressed(KEY_E)) nextLine = true;
-        }
+        waitForInput = true;
+        DrawDialogueText(dialogue);
     }
+}
 
+
+void DrawDialogueText(const std::string &input)
+{
+    SplitDialogue(input, dialogue_arr);
+
+    for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
+
+        int pos_i = i * (FONT_SIZE + FONT_SPACING);
+
+        DrawTextEx(
+            alagard,
+            dialogue_arr[i].c_str(),
+            (Vector2){FONT_X,FONT_Y + pos_i},
+            FONT_SIZE,
+            FONT_SPACING,
+            BLACK
+        );
+    }
 }

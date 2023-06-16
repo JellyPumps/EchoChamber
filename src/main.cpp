@@ -35,6 +35,8 @@ int main()
         else ClearBackground(RAYWHITE);
 
         EndDrawing();
+
+        if (waitForInput && IsKeyPressed(KEY_E)) waitForInput = false;
     }
 
     // Cleanup Program
