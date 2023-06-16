@@ -18,4 +18,4 @@ void DrawDialogue();
 void DrawDialogueText(const std::string &input);
 void SetDialoguePicture(const char *PATH);
 void SplitDialogue(const std::string &input, std::string dialogue[]);
-void ProcessDialogue(const std::string &filename);
+void ProcessDialogue(std::ifstream& file);

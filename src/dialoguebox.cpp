@@ -60,10 +60,6 @@ void DrawDialogue()
          PX_POS_Y,
         WHITE
     );
-
-    // Dialogue Text
-    ProcessDialogue(PATH_INTRODUCTION_FILE);
-    //DrawDialogueText(dialogue);
     
 }
 
@@ -125,16 +121,11 @@ void SplitDialogue(const std::string &input, std::string dialogue[])
     }
 }
 
-void ProcessDialogue(const std::string &filename)
+void ProcessDialogue(std::ifstream& file)
 {
-    std::ifstream file(filename);
-
-    if (!file.is_open()) {
-        std::cerr << "Failed To Open File" << "\n";
-        return;
-    }
-
     std::string line;
+
+    DrawDialogueText(dialogue);
 
     if (waitForInput) {
         // Press "KEY" To Continue Text
@@ -148,6 +139,10 @@ void ProcessDialogue(const std::string &filename)
         );
     }
     else if (std::getline(file,line)) {
+
+        for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
+            dialogue_arr[i] = "";
+        }
 
         size_t colonPos = line.find(':');
 

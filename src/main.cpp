@@ -3,6 +3,7 @@
 #include "filepath.h"
 #include "global.h"
 
+#include <fstream>
 #include <raylib.h>
 
 #include <bits/stdc++.h>
@@ -16,10 +17,18 @@ int main()
     SetTargetFPS(FPS);
 
     // Set Properites of Dialogue Box
-    SetDialoguePicture(PATH_HIGHMAGE);
+    SetDialoguePicture(HIGH_MAGE);
 
     // Load font
     loadALAGARD();
+
+    // Load Intro File
+    std::ifstream introFile(PATH_INTRODUCTION_FILE);
+
+    if (!introFile) {
+        std::cout << "Failed to open dialogue file." << std::endl;
+        return 1;
+    }
 
     // Game Loop
     while (!WindowShouldClose())
@@ -31,7 +40,10 @@ int main()
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        if (show_dialogue_box) DrawDialogue();
+        if (show_dialogue_box) {
+            DrawDialogue();
+            ProcessDialogue(introFile);
+        }
         else ClearBackground(RAYWHITE);
 
         EndDrawing();
