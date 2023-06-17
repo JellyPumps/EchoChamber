@@ -2,6 +2,7 @@
 
 // Images
 extern const char *HIGH_MAGE; // High Mage
+extern const char *NOBLEMAN; // Random Nobleman
 
 // Fonts
 extern const char *PATH_ALAGARD; // Alagard

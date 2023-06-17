@@ -16,11 +16,11 @@ int main()
     InitWindow(RESOLUTION[0], RESOLUTION[1], TITLE);
     SetTargetFPS(FPS);
 
-    // Set Properites of Dialogue Box
-    SetDialoguePicture(HIGH_MAGE);
-
     // Load font
     loadALAGARD();
+
+    // Load
+    SetDialoguePicture(HIGH_MAGE);
 
     // Load Intro File
     std::ifstream introFile(PATH_INTRODUCTION_FILE);
@@ -52,6 +52,7 @@ int main()
     }
 
     // Cleanup Program
+    UnloadImage(high_mage);
     CloseWindow();
 
     return 0;

@@ -6,6 +6,7 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
+#include <raylib.h>
 #include <string>
 
 PictureInfo picture;
@@ -19,6 +20,7 @@ std::string character;
 std::string dialogue_arr[DIALOGUE_ARR_SIZE];
 
 Font alagard;
+Image high_mage;
 
 // Load Main Font
 void loadALAGARD()
@@ -152,6 +154,13 @@ void ProcessDialogue(std::ifstream& file)
         }
 
         waitForInput = true;
+
+        std::cout << character << "\n";
+
+        if (character == "High Mage") {
+            picture.character = LoadTextureFromImage(high_mage);
+        }
+
         DrawDialogueText(dialogue);
     }
 }

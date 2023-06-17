@@ -12,6 +12,7 @@ typedef struct
 
 extern PictureInfo picture;
 extern Font alagard;
+extern Image high_mage;
 
 void loadALAGARD();
 void DrawDialogue();

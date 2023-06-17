@@ -2,6 +2,7 @@
 
 // Images
 const char *HIGH_MAGE = "../assets/Characters/High Mage.png";
+const char *NOBLEMAN = "../assets/Characters/Nobleman.png";
 
 // Fonts
 const char *PATH_ALAGARD = "../assets/alagard.ttf";
