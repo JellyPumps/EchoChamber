@@ -13,8 +13,8 @@ bool show_dialogue_box = 0;
 int main()
 {
     // Set Window Properties
-    InitWindow(RESOLUTION[0], RESOLUTION[1], TITLE);
-    SetTargetFPS(FPS);
+    InitWindow(g_RESOLUTION[0], g_RESOLUTION[1], g_TITLE);
+    SetTargetFPS(g_FPS);
 
     // Load font
     loadALAGARD();
@@ -48,7 +48,7 @@ int main()
 
         EndDrawing();
 
-        if (waitForInput && IsKeyPressed(KEY_E)) waitForInput = false;
+        NextDialogue();
     }
 
     // Cleanup Program
