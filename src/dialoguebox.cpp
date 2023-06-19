@@ -11,28 +11,33 @@
 
 PictureInfo picture;
 
+const float DX_POS_X = g_RESOLUTION[0] * 7.0 / 40.0;
+const float DX_POS_Y = g_RESOLUTION[1] * 3.0 / 4.0;
+const float DX_SIZ_X = g_RESOLUTION[0] * 1.0 / 2.0;
+const float DX_SIZ_Y = g_RESOLUTION[1] * 1.0 / 6.0;
 
-const float DX_POS_X = g_WIDTH * 7.0 / 40.0;
-const float DX_POS_Y = g_HEIGHT *3.0 / 4.0;
-const float DX_SIZ_X = g_WIDTH * 1.0 / 2.0;
-const float DX_SIZ_Y = g_HEIGHT * 1.0 / 6.0;
-const float PX_POS_X = g_WIDTH * 1.0 / 40.0;
-const float PX_POS_Y = g_HEIGHT * 3.0 / 4.0;
-const float PX_SIZ_X = g_WIDTH * 1.0 / 8.0;
-const float PX_SIZ_Y = g_HEIGHT * 1.0 / 6.0;
-const float OT_POS_X = g_WIDTH * 1.0 / 80.0;
-const float OT_POS_Y = g_HEIGHT * 11.0 / 15.0;
-const float OT_SIZ_X = g_WIDTH * 27.0 / 40.0;
-const float OT_SIZ_Y = g_HEIGHT * 1.0 / 5.0;
+const float PX_POS_X = g_RESOLUTION[0] * 1.0 / 40.0;
+const float PX_POS_Y = g_RESOLUTION[1] * 3.0 / 4.0;
+const float PX_SIZ_X = g_RESOLUTION[0] * 1.0 / 8.0;
+const float PX_SIZ_Y = g_RESOLUTION[1] * 1.0 / 6.0;
 
-const float FONT_X = DX_POS_X + g_FONT_SIZE;
-const float FONT_Y = DX_POS_Y + g_FONT_SPACING;
-const float CONT_X = 19.0 * g_FONT_SIZE * g_FONT_SPACING;
-const float CONT_Y = g_HEIGHT - g_FONT_SIZE;
+const float OT_POS_X = g_RESOLUTION[0] * 1.0 / 80.0;
+const float OT_POS_Y = g_RESOLUTION[1] * 11.0 / 15.0;
+const float OT_SIZ_X = g_RESOLUTION[0] * 27.0 / 40.0;
+const float OT_SIZ_Y = g_RESOLUTION[1] * 1.0 / 5.0;
+
+const float FONT_SIZE     = g_RESOLUTION[0] / 50.0;
+const float FONT_SPACING  = g_RESOLUTION[0] / 400.0;
+
+const float FONT_X = DX_POS_X + FONT_SIZE;
+const float FONT_Y = DX_POS_Y + FONT_SPACING;
+
+const float CONT_X = 19.0 * FONT_SIZE * FONT_SPACING;
+const float CONT_Y = g_RESOLUTION[1] - FONT_SIZE;
 
 
-const int MAX_CHARACTER_COUNT = 32;
-const int DIALOGUE_ARR_SIZE = 5;
+const int MAX_CHARACTER_COUNT   = 32;
+const int DIALOGUE_ARR_SIZE     = 5;
 
 std::string dialogue;
 std::string character;
@@ -156,8 +161,8 @@ void ProcessDialogue(std::ifstream& file)
             alagard,
             "Press E To Continue",
             (Vector2){CONT_X,CONT_Y},
-            g_FONT_SIZE,
-            g_FONT_SPACING,
+            FONT_SIZE,
+            FONT_SPACING,
             GRAY
         );
     }
@@ -193,14 +198,14 @@ void DrawDialogueText(const std::string &input)
 
     for (int i = 0; i < DIALOGUE_ARR_SIZE; i++) {
 
-        int pos_i = i * (g_FONT_SIZE + g_FONT_SPACING);
+        int pos_i = i * (FONT_SIZE + FONT_SPACING);
 
         DrawTextEx(
             alagard,
             dialogue_arr[i].c_str(),
             (Vector2){FONT_X,FONT_Y + pos_i},
-            g_FONT_SIZE,
-            g_FONT_SPACING,
+            FONT_SIZE,
+            FONT_SPACING,
             BLACK
         );
     }
